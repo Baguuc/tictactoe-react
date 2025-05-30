@@ -69,22 +69,27 @@ export default function Board() {
   }, [squares]);
 
   return (
-    <table className="board">
+   <div className="board-root">
+    <h2>Aktualnie stawia: {currentSymbol}</h2>
+     <table className="board">
+     <tbody>
       <tr className="board-row">
-        <Square value={squares[0]} update={getClickHandler(0)} />
-        <Square value={squares[1]} update={getClickHandler(1)} />
-        <Square value={squares[2]} update={getClickHandler(2)} />
-      </tr>
-      <tr className="board-row">
-        <Square value={squares[3]} update={getClickHandler(3)} />
-        <Square value={squares[4]} update={getClickHandler(4)} />
-        <Square value={squares[5]} update={getClickHandler(5)} />
-      </tr>
-      <tr className="board-row">
-        <Square value={squares[6]} update={getClickHandler(6)} />
-        <Square value={squares[7]} update={getClickHandler(7)} />
-        <Square value={squares[8]} update={getClickHandler(8)} />
-      </tr>
+          <Square value={squares[0]} update={getClickHandler(0)} />
+          <Square value={squares[1]} update={getClickHandler(1)} />
+          <Square value={squares[2]} update={getClickHandler(2)} />
+        </tr>
+        <tr className="board-row">
+          <Square value={squares[3]} update={getClickHandler(3)} />
+          <Square value={squares[4]} update={getClickHandler(4)} />
+          <Square value={squares[5]} update={getClickHandler(5)} />
+        </tr>
+        <tr className="board-row">
+          <Square value={squares[6]} update={getClickHandler(6)} />
+          <Square value={squares[7]} update={getClickHandler(7)} />
+          <Square value={squares[8]} update={getClickHandler(8)} />
+        </tr>
+     </tbody>
     </table>
+   </div>
   );
 }
