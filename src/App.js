@@ -48,13 +48,14 @@ function Square({ value, update }) {
 
 export default function Board() {
   const [currentSymbol, setCurrentSymbol] = useState("O");
+  const [status, setStatus] = useState("Aktualnie stawia: O");
+  const [winner, setWinner] = useState(null);
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function getClickHandler(idx) {
     return () => {
-      if(squares[idx]) {
-        return;
-      }
+      if(squares[idx]) return;
+      if(winner) return;
 
       setSquares({ ...squares, [idx]: currentSymbol });
       setCurrentSymbol(currentSymbol === "X" ? "O" : "X");
@@ -64,13 +65,21 @@ export default function Board() {
   useEffect(() => {
     const check = checkBoard(squares);
     if (check !== null) {
-      console.log(check);
-    };
+      // ktoś wygrał
+      setWinner(check);
+    } else {
+      // gra toczy się dalej
+      setStatus(`Aktualnie stawia: ${currentSymbol}`);
+    }
   }, [squares]);
+
+  useEffect(() => {
+    if(winner) setStatus(`${winner} wygrał!`);
+  }, [winner]);
 
   return (
    <div className="board-root">
-    <h2>Aktualnie stawia: {currentSymbol}</h2>
+    <h2>{status}</h2>
      <table className="board">
      <tbody>
       <tr className="board-row">
