@@ -50,6 +50,10 @@ export default function Board() {
 
   function getClickHandler(idx) {
     return () => {
+      if(squares[idx]) {
+        return;
+      }
+      
       setSquares({ ...squares, [idx]: currentSymbol });
       setCurrentSymbol(currentSymbol === "X" ? "O" : "X");
     };
